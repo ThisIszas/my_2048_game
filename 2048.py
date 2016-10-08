@@ -215,11 +215,12 @@ class Game2048(object):
 s = Game2048()
 while 1:
     choice = raw_input("Please input a direction:")
-    if choice == 'w':
+    if choice == 'w' or choice == 'W':
         s.up_choice()
-    elif choice == 's':
+    elif choice == 's' or choice == 'S':
         s.down_choice()
-    elif choice == 'a':
+    elif choice == 'a' or choice == 'A':
         s.left_choice()
-    elif choice == 'd':
+    elif choice == 'd' or choice == 'D':
         s.right_choice()
+
