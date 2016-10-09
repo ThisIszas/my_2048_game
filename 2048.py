@@ -18,7 +18,7 @@ class Game2048(object):
                 self.random_Y = random.randint(0, self.n-1)
                 self.check = (self.random_X, self.random_Y)
             self.check_list.append(self.check)
-            self.panel[self.random_X][self.random_Y] = 2
+            self.panel[self.random_X][self.random_Y] = 1024
         self.clear_variable()
         self.show()
 
@@ -205,6 +205,11 @@ class Game2048(object):
             for j in range(self.n):
                 if self.panel[i][j] == 2048:
                     print "Congratulation you have finish it,please keep on moving."
+                    sd_exit = raw_input("Do you want continue or exit?(Input Y/y to continue others to exit.)")
+                    if sd_exit == 'Y' or sd_exit == 'y':
+                        pass
+                    else:
+                        exit()
                 else:
                     if self.panel[i][j] == 0:
                         count += 1
