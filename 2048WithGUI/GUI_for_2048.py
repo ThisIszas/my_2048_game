@@ -72,7 +72,7 @@ class GUIScreen(object):
         over_text = self.fontObj.render(u'GAME OVER!', True, self.RED)
         score_text = self.fontObj.render(u'Final Score: ' + str(self.SCORE), True, self.WHITE)
         prompt_text = self.fontObj.render(u'Press "Enter" to replay', True, self.WHITE)
-        self.screen.blit(over_text, (self.unit_size, self.unit_size))
+        self.screen.blit(over_text, (15, 20))
         #  self.screen.blit(score_text, (self.unit_size + 30, self.unit_size))
         self.screen.blit(prompt_text, (300, 290))
 
@@ -96,9 +96,11 @@ class GUIScreen(object):
         self.SCORE = self.GameStart.score
         self.Score_Word = self.fontObj.render(str(self.SCORE), False, self.WHITE)
 
-    def undo_back(self):  # -------------------------
+    def undo_back(self):
         self.GameStart.undo_back()
         self.chessboard_2 = self.GameStart.panel
+        self.SCORE = self.GameStart.score
+        self.Score_Word = self.fontObj.render(str(self.SCORE), False, self.WHITE)
 
     def draw_pic_on_screen(self):
         self.GAME_STATE = self.GameStart.GameStatus

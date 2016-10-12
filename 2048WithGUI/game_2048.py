@@ -8,6 +8,7 @@ class GameOf2048(object):
         self.n = 4  # self.n用来定义数组大小,此处的4表示若无其他更改,将会生成一个4*4的二维数组.
         self.i = 0
         self.j = 0
+        self.undo_score = 0
         self.check_list = []  # check_list用于储存已经有数字的坐标,然后检查坐标是否在check_list中,
         # 若不在则在坐标处插入一个随机数字.
         self.panel = [[0 for self.i in range(4)] for self.j in range(4)]  # 用于储存数字的数组(游戏面板)
@@ -36,6 +37,7 @@ class GameOf2048(object):
         self.show()
 
     def right_choice(self):  # 向右移动指令的实现函数
+        self.undo_score = self.score
         self.undo_panel = copy.deepcopy(self.panel)  # 为了执行undo需要把执行向右操作前的数组深复制到undo_panel中.
         temp = 0  # 当一个数字第一次出现时,就把这个数赋给temp
         count = 1  # count用于判断一个数是否是第一次出现.
@@ -82,6 +84,7 @@ class GameOf2048(object):
         self.show()
 
     def left_choice(self):  # 和上面一个函数类似.
+        self.undo_score = self.score
         self.undo_panel = copy.deepcopy(self.panel)
         temp = 0
         count = 1
@@ -123,6 +126,7 @@ class GameOf2048(object):
         self.show()
 
     def up_choice(self):  # 和上面一个函数类似.
+        self.undo_score = self.score
         self.undo_panel = copy.deepcopy(self.panel)
         count = 1
         k = temp = 0
@@ -162,6 +166,7 @@ class GameOf2048(object):
         self.show()
 
     def down_choice(self):  # 和上面一个函数类似.
+        self.undo_score = self.score
         self.undo_panel = copy.deepcopy(self.panel)
         count = 1
         k = temp = 0
@@ -247,3 +252,16 @@ class GameOf2048(object):
 
     def undo_back(self):
         self.panel = copy.deepcopy(self.undo_panel)
+        self.score = self.undo_score
+# g = GameOf2048()
+# g.initial_chessboard()
+# while 1:
+#     c = raw_input('输入一个方向(wsad)')
+#     if c == 'w':
+#         g.up_choice()
+#     elif c == 's':
+#         g.down_choice()
+#     elif c == 'a':
+#         g.left_choice()
+#     elif c == 'd':
+#         g.right_choice()
