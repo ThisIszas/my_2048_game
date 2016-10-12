@@ -1,4 +1,4 @@
-# coding:utf-8
+﻿# coding:utf-8
 import random
 import copy  # copy模块是为了执行undo时深拷贝显示用的数组给另一个undo数组.
 
@@ -247,3 +247,16 @@ class GameOf2048(object):
 
     def undo_back(self):
         self.panel = copy.deepcopy(self.undo_panel)
+
+g = GameOf2048()
+g.initial_chessboard()
+while 1:
+    c = raw_input('输入一个方向(wsad)')
+    if c == 'w':
+        g.up_choice()
+    elif c == 's':
+        g.down_choice()
+    elif c == 'a':
+        g.left_choice()
+    elif c == 'd':
+        g.right_choice()
